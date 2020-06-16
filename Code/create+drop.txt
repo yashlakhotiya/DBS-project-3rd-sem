@@ -1,0 +1,78 @@
+create table area(
+area_name varchar(20) not null,
+area_id varchar(20) primary key);
+
+create table citizen(
+citizen_id varchar(20) primary key,
+id_proof_number varchar(20) unique not null,
+citizen_name varchar(20) not null,
+street varchar(20) not null,
+house_number varchar(20) not null,
+password varchar(20) not null,
+area_id varchar(20) references area on delete cascade);
+
+create table department(
+department_id varchar(20) primary key,
+department_name varchar(20) not null,
+landline varchar(12) not null);
+
+create table employee(
+employee_id varchar(20) primary key,
+employee_name varchar(20) not null,
+gender char(1) not null,
+phone varchar(12) not null,
+department_id varchar(20) references department on delete cascade);
+
+create table complaint(
+complaint_id varchar(20) primary key,
+date_of_complaint date not null,
+description varchar(50),
+citizen_id varchar(20) references citizen on delete cascade,
+department_id varchar(20) references department on delete cascade,
+employee_id varchar(20) references employee on delete cascade);
+
+create table complaint_serviced(
+date_of_service date,
+complaint_id varchar(20) primary key,
+date_of_complaint date not null,
+description varchar(50),
+citizen_id varchar(20),
+department_id varchar(20),
+employee_id varchar(20));
+
+delete from complaint_serviced;
+delete from citizen;
+delete from complaint;
+drop sequence seq;
+drop sequence seq_comp;
+commit;
+
+
+create or replace trigger complaint_history
+before delete on complaint
+for each row
+begin
+insert into complaint_serviced values(sysdate,:old.complaint_id,:old.date_of_complaint,:old.description,:old.citizen_id,:old.department_id,:old.employee_id);
+end;
+/
+
+create sequence seq
+start with 1000
+increment by 1
+nocache
+nocycle;
+
+create sequence seq_comp
+start with 10000
+increment by 1
+nocache
+nocycle;
+
+select * from complaint;
+select * from complaint_serviced;
+select * from citizen;
+
+drop table area;
+drop table citizen;
+drop table employee;
+drop table complaint;

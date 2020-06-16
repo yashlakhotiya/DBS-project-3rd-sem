@@ -1,0 +1,51 @@
+
+SQL*Loader: Release 11.2.0.1.0 - Production on Sat Mar 30 10:22:20 2019
+
+Copyright (c) 1982, 2009, Oracle and/or its affiliates.  All rights reserved.
+
+Control File:   C:\Users\lakho\Desktop\DBSProject\loademployee.ctl
+Data File:      C:\Users\lakho\Desktop\DBSproject\employee.csv
+  Bad File:     C:\Users\lakho\Desktop\DBSProject\employee.bad
+  Discard File:  none specified
+ 
+ (Allow all discards)
+
+Number to load: ALL
+Number to skip: 0
+Errors allowed: 50
+Bind array:     64 rows, maximum of 256000 bytes
+Continuation:    none specified
+Path used:      Conventional
+
+Table EMPLOYEE, loaded from every logical record.
+Insert option in effect for this table: INSERT
+
+   Column Name                  Position   Len  Term Encl Datatype
+------------------------------ ---------- ----- ---- ---- ---------------------
+EMPLOYEE_ID                         FIRST     *   ,       CHARACTER            
+EMPLOYEE_NAME                        NEXT     *   ,       CHARACTER            
+GENDER                               NEXT     *   ,       CHARACTER            
+PHONE                                NEXT     *   ,       CHARACTER            
+DEPARTMENT_ID                        NEXT     *   ,       CHARACTER            
+
+
+Table EMPLOYEE:
+  49 Rows successfully loaded.
+  0 Rows not loaded due to data errors.
+  0 Rows not loaded because all WHEN clauses were failed.
+  0 Rows not loaded because all fields were null.
+
+
+Space allocated for bind array:                  82560 bytes(64 rows)
+Read   buffer bytes: 1048576
+
+Total logical records skipped:          0
+Total logical records read:            49
+Total logical records rejected:         0
+Total logical records discarded:        0
+
+Run began on Sat Mar 30 10:22:20 2019
+Run ended on Sat Mar 30 10:22:26 2019
+
+Elapsed time was:     00:00:05.87
+CPU time was:         00:00:00.03
